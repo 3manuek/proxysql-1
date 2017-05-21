@@ -5,6 +5,7 @@
 
 
 #define EXPIRE_DROPIT   0
+/** Defines the number of caches */
 #define SHARED_QUERY_CACHE_HASH_TABLES  32
 #define HASH_EXPIRE_MAX 3600*24*365*10
 #define DEFAULT_purge_loop_time 500000
@@ -17,17 +18,39 @@ class KV_BtreeArray;
 
 typedef struct __QC_entry_t QC_entry_t;
 
+/**
+  This structure holds the entries for the Query Cache.
+*/
+
 struct __QC_entry_t {
-	uint64_t key; // primary key
-	char *value;  // pointer to value
-	KV_BtreeArray *kv; // pointer to the KV_BtreeArray where the entry is stored
-	QC_entry_t *self; // pointer to itself
-	uint32_t klen; // length of the key : FIXME: not sure if still relevant
-	uint32_t length; // length of the value
-	unsigned long long expire_ms; // when the entry will expire, monotonic , millisecond granularity
-	unsigned long long access_ms; // when the entry was read last , monotonic , millisecond granularity
-	uint32_t ref_count; // reference counter
+	/** Primary Key */
+	uint64_t key; 
+
+	/** Pointer to value */
+	char *value;  
+
+	/** pointer to the KV_BtreeArray where the entry is stored */
+	KV_BtreeArray *kv; 
+
+	/** Pointer to itself */
+	QC_entry_t *self;
+
+	/** Length of the key : FIXME: not sure if still relevant */ 
+	uint32_t klen; 
+
+	/** Length of the value */
+	uint32_t length; 
+
+	/** When the entry will expire, monotonic , millisecond granularity */
+	unsigned long long expire_ms; 
+
+	/** When the entry was read last , monotonic , millisecond granularity */
+	unsigned long long access_ms;
+
+	/** Reference counter  */
+	uint32_t ref_count; 
 };
+
 /*
 typedef btree::btree_map<uint64_t, QC_entry_t *> BtMap_cache;
 

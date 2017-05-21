@@ -110,3 +110,7 @@ proxysql-tests.ini
 
 #heaptrack
 heaptrack.*
+
+#doxygen
+generated/
+generated/doxygen/

@@ -645,7 +645,13 @@ bool ProxySQL_daemonize_phase3() {
 	return true;
 }
 
-
+/**
+ * Entrypoint
+ *
+ * @params int argc      Number of parameters
+ *
+ * @params char * argv[] Parameter's array
+ */
 int main(int argc, const char * argv[]) {
 
 	{
@@ -692,7 +698,7 @@ int main(int argc, const char * argv[]) {
 			}
 
 #ifdef DEBUG
-			std::cerr << "Main daemonize phase1 completed in ";
+			std::cerr << "Main daemonize phase2 completed in ";
 #endif
 		}
 
